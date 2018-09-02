@@ -1,0 +1,40 @@
+
+
+service服务相关:
+
+---------oracle service----------
+OracleDBConsoleorcl 默认开启
+OracleMTSRecoveryService  默认开启 
+OracleOraDb11g_home1TNSListener  默认开启
+OracleServiceORCL   默认开启 占内存最大
+
+ OracleServiceORCL：数据库服务(数据库实例)，是Oracle核心服务该服务，是数据库启动的基础， 只有该服务启动，Oracle数据库才能正常启动。(必须启动)
+对新手来说，要是只用Oracle自带的sql*plus的话，只要启动OracleServiceORCL即可，
+要是使用PL/SQL Developer等第三方工具的话，OracleOraDb11g_home1TNSListener服务也要开启。OracleDBConsoleorcl是进入基于web的EM必须开启的，其余服务很少用
+
+----------mysql ------------
+MySQL   默认开启
+win下开启命令: net start mysql
+win下关闭命令: net stop mysql
+
+
+----------MongoDB-----------
+MongoDB win下需要自己设置
+
+
+
+-----------redis-----------
+需开启redis的服务器
+redis-server
+redis-server redis.windows.conf
+redis-server redis.conf
+redis-server --protected-mode no
+
+
+
+
+port端口号:
+oracle:1521
+mysql:3306
+MongoDB:27017
+redis:6379

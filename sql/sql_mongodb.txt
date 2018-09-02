@@ -1,0 +1,20 @@
+
+打开MongoDB服务: net start MongoDB
+进入mongoDB命令: mongo
+
+
+
+
+命令行下mongodb常用操作
+
+0. 查看所有数据库 show dbs
+
+1. 使用/创建某一数据库 : use localtest  (没有时创建)
+
+2. 查看当前数据库下的集合Collections : show collections
+
+3. 查看某一集合的所有数据(此处以user集合为例): db.user.find()
+
+4. 对集合中插入一行数据(插入参数为字典dict): db.user.insert({'name':'赵三'})
+
+5. 删除某一数据库: db.dropDatabase()

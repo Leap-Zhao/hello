@@ -1,0 +1,66 @@
+1.系统用户:
+sys,system 权限高,
+sysman  操作企业管理
+scott  默认tiger 权限最低
+
+
+登录sql plus:
+使用system用户登录: [username/password][@server][as sysdba|sysoper]
+在自己机子上: system/password 
+在别人机子上: system/password @orcl as sysdba  (orcl是自己设置的服务名)
+
+连接别的用户 connect sys/password as sysdba
+conn 17126255 as sysdba
+
+查看登录用户 : show user
+查看数据库里面所有用户,前提是你是有dba权限的帐号如sys,system: select * from dba_users; 
+查看所有用户 desc dba_user  或 select username from dba_users;
+
+select * from all_users; 查看你能管理的所有用户！
+select * from user_users; 查看当前用户信息 ！
+
+启用用户的语句: alter user username account unlock;
+启用scott用户: alter user scott account unlock;
+
+-------------数据字典-----------
+dba_tablespace  dba的数据字典(只能system,sys查看)
+user_tablespace 普通用户的数据字典(scott和其它用户)
+dba_users   
+user_users
+
+查看dba的数据字典 desc dba_tablespaces
+查看user的数据字典 desc user_tablespaces
+
+-------------------------------
+-------------表空间------------
+-------------------------------
+
+永久表空间
+临时表空间
+UNDO表空间
+
+从数据字典中查看dba的表空间
+select tablespace_name from dba_tablespaces;
+从数据字典中查看user的表空间
+select tablespace_name from user_tablespaces;
+查看system用户的默认表空间与临时表空间
+select default_tablespace,temporary_tablespace from dba_users where username='SYSTEM';
+
+设置用户的临时及默认表空间 : alter user username default|temporary tablespace tablespace_name
+例子: alter user system default tablespace system;
+alter user system default
+
+-----创建表空间-----------
+
+创建永久表空间test1_tablespace
+create tablespace test1_tablespace datafile 'test1_file.dbf' size 10m;
+
+创建临时表空间create temporary tablespace temptest1_tablesapce tempfile 'tempfile1.dbf' size 10m;
+
+查看表空间(默认,临时)文件的默认路径.
+desc dba_data_files 
+select file_name from dba_data_files where tablespace_name='TEST1_TABLESPACE'
+select file_name from dba_temp_files where tablespace_name='TEMPTEST1_TABLESPACE'
+
+-----修改表空间-------
+
