@@ -1,0 +1,16 @@
+scrapy-redis
+
+1.安装scrapy-reids包: pip install scrapy-redis
+2.下载scrapy-redis的源码,其中包含3个示例 scrapy-redis/example-project
+源码地址:https://github.com/rmax/scrapy-redis
+
+redis数据库
+1.安装redis数据库,下载地址:https://github.com/MSOpenTech/redis/releases
+2.redis-server是打开redis数据库服务器的,redis-cli是redis的命令行界面
+3.redis路径下有redis.conf配置文件,win下为redis.windows.conf配置文件,要关闭redis的保护模式protected-mode,将绑定bind 127.0.0.1注释掉,最好在redis-server的时候指定一个配置文件
+4.可以下载redis-disktop-manager软件,可视化管理redis数据库
+
+如何使用scrapy-redis:
+1.写好scrapy项目
+2.修改scrapy项目的setting.py文件,添加scrapy-redis配置
+3.修改scrapy项目的spider文件夹中的爬虫文件,添加scrapy-redis类
