@@ -81,7 +81,7 @@ class SingleLinkList(object):
 	# 2.newNode.next = cur.next
 	# 3.cur.next = newNode
 	# 注:为方便将cur起名为pre,代表应该到前一个位置
-	def insert(self,pos,data):
+	def insert_before(self,pos,data):
 		node = Node(data)
 		cur = self.__head
 		if pos <= 0 :
@@ -99,6 +99,22 @@ class SingleLinkList(object):
 			# 循环退出之后cur到达pos-1的位置(从0开始)
 			node.next = cur.next
 			cur.next = node
+
+	# 在指定位置后添加结点
+    def insert_after(self,pos,data):
+        node = Node(data)
+        if pos < 0:
+            self.add(data)
+        elif pos >= (self.get_length()-1):
+            self.append(data)
+        else:
+            cur = self.__head
+            count = 0
+            while count<pos:
+                count += 1
+                cur = cur.next
+            node.next = cur.next
+            cur.next = node
 
 	# 查找节点是否存在,存在返回真,不存在返回假
 	# 思路:
@@ -118,6 +134,18 @@ class SingleLinkList(object):
 			else:
 				cur = cur.next
 		return False
+
+	# 根据data值找出结点的索引,没找到返回-1
+    def search_index(self,data):
+        cur = self.__head
+        index = 0
+        while cur != None:
+            if cur.data == data:
+                return index
+            else:
+                index += 1
+                cur = cur.next
+        return -1
 	
 	# 删除结点: 若链表中有多个指定的元素,则只删除第1个,无返回值
 	# 如果链表为空,则应返回None
@@ -131,17 +159,42 @@ class SingleLinkList(object):
 	#	 当移除了一个指定元素时,就直接return,而不是继续执行,
 	# 说明:
 	# 	当链表只有1个元素并移除后返回的链表为空链表None,当链表为空时再移除就报异常,这样的安排是和python的list列表的remove方法保持一致
-	def remove(self,data):
-		pre = self.__head
-		if pre.data == data:
-			self.__head = pre.next
-			return
-		while pre.next != None:
-			if pre.next.data == data:
-				pre.next = pre.next.next
+	def remove_by_data(self,data):
+		if self.is_empty():
+            print("simple link list is empty")
+        else:
+			pre = self.__head
+			if pre.data == data:
+				self.__head = pre.next
 				return
-			else:
-				pre = pre.next
+			while pre.next != None:
+				if pre.next.data == data:
+					pre.next = pre.next.next
+					return
+				else:
+					pre = pre.next
+
+	# 根据位置删除指定结点
+    def remove_by_index(self,pos):
+        if self.is_empty():
+            print("simple link list is empty")
+        else:
+            if pos <= 0:
+                self.__head = self.__head.next
+            elif pos >= (self.get_length()-1):
+                index = 1
+                pre = self.__head
+                while index < self.get_length()-1:
+                    index += 1
+                    pre = pre.next
+                pre.next = None
+            else:
+                index = 1
+                pre = self.__head
+                while index < pos:
+                    index += 1
+                    pre = pre.next
+                pre.next = pre.next.next
 
 if __name__ == "__main__":
 	sll = SingleLinkList()
