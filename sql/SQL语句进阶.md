@@ -1,1 +1,2 @@
-- group by : [MYSQL  GROUP BY 对多个字段进行分组](https://segmentfault.com/a/1190000006821331)
+- group by : [MYSQL GROUP BY 对多个字段进行分组](https://segmentfault.com/a/1190000006821331)
+- concat() 与 group_concat(): [MySQL教程之concat以及group_concat的用法](https://baijiahao.baidu.com/s?id=1595349117525189591&wfr=spider&for=pc)
